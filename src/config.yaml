@@ -1,0 +1,91 @@
+options:
+  nodepool_config:
+    type: string
+    default: |
+      providers:
+      - name: serverstack # this is a nodepool identifier for this cloud provider (cloud+region combo)
+        region-name: serverstack  # this needs to match the region name in clouds.yaml but is only needed if there is more than one region
+        cloud: serverstack  # This needs to match the name in clouds.yaml
+        cloud-images:
+          - name: bionic   # Defines a cloud-image for nodepool
+            image-name: auto-sync/ubuntu-bionic-18.04-amd64-server-20201117-disk1.img  # name of image from cloud
+            username: ubuntu  # The user Zuul should log in as
+        pools:
+          - name: main
+            max-servers: 4  # nodepool will never create more than this many servers
+            labels:
+              - name: bionic-small  # defines label that will be used to get one of these in a job
+                flavor-name: 'm1.medium'  # name of flavor from cloud
+                cloud-image: bionic  # matches name from cloud-images
+                key-name: nodepool # name of the keypair to use for authentication
+      labels:
+        - name: bionic-small # defines label that will be used in jobs
+          min-ready: 2  # nodepool will always keep this many booted and ready to go
+    description: |
+      nodepool_config is rendered directly into /etc/nodepool/nodepool.yaml
+      and is used to configure what nodepool does. Some additional details
+      are rendered before this, such as the environment's zookeeper servers.
+      .
+      An example of what your config may look like:
+      .
+      providers:
+        - name: serverstack # this is a nodepool identifier for this cloud provider (cloud+region combo)
+          region-name: serverstack  # this needs to match the region name in clouds.yaml but is only needed if there is more than one region
+          cloud: serverstack  # This needs to match the name in clouds.yaml
+          cloud-images:
+            - name: bionic   # Defines a cloud-image for nodepool
+              image-name: auto-sync/ubuntu-bionic-18.04-amd64-server-20201117-disk1.img  # name of image from cloud
+              username: ubuntu  # The user Zuul should log in as
+          pools:
+            - name: main
+              max-servers: 4  # nodepool will never create more than this many servers
+              labels:
+                - name: bionic-small  # defines label that will be used to get one of these in a job
+                  flavor-name: 'm1.medium'  # name of flavor from cloud
+                  cloud-image: bionic  # matches name from cloud-images
+                  key-name: nodepool # name of the keypair to use for authentication
+      labels:
+        - name: bionic-small # defines label that will be used in jobs
+          min-ready: 2  # nodepool will always keep this many booted and ready to go
+  auth-url:
+    description: |
+      The URL of the keystone API used to authenticate. On OpenStack control panels,
+      this can be found at Access and Security > API Access > Credentials.
+    type: "string"
+    default: ""
+  username:
+    description: "Username of a valid user set in keystone."
+    type: "string"
+    default: ""
+  password:
+    description: "Password of a valid user set in keystone."
+    type: "string"
+    default: ""
+  project-name:
+    description: "Name of project where you want to create your resources."
+    type: "string"
+    default: ""
+  user-domain-name:
+    description: "Name of the user domain where you want to create your resources."
+    type: "string"
+    default: ""
+  project-domain-name:
+    description: "Name of the project domain where you want to create your resources."
+    type: "string"
+    default: ""
+  cloud-name:
+    description: "Name of the cloud"
+    type: string
+    default: ""
+  region-name:
+    description: "Name of the region to configure"
+    type: string
+    default: ""
+  endpoint-tls-ca:
+    description: |
+      A CA certificate that can be used to verify the target cloud API endpoints.
+      Use 'include-base64://' in a bundle to include a certificate. Otherwise,
+      pass a base64-encoded certificate (base64 of "-----BEGIN" to "-----END")
+      as a config option in a Juju CLI invocation.
+    type: "string"
+    default: ""

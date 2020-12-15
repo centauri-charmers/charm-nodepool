@@ -1,0 +1,19 @@
+charm_name: zuul-scheduler
+dev_bundles:
+- bionic
+- focal
+gate_bundles:
+- bionic
+- focal
+smoke_bundles:
+- bionic
+- focal
+target_deploy_status:
+  zookeeper:
+    workload_status_message: 
+      - Zookeeper client data sent
+      - 3 nodes
+  zuul-scheduler:
+    workload_status_message: Zuul is ready
+tests: []
+configure: []

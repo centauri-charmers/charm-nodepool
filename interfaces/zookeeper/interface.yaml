@@ -1,0 +1,4 @@
+name: zookeeper
+summary: Basic zookeeper interface
+version: 1
+repo: https://github.com/omnivector-solutions/interface-zookeeper

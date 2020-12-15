@@ -1,0 +1,7 @@
+zookeeper-servers:
+{% for zookeeper in zk_servers %}
+- host: {{ zookeeper.host }}
+  port: {{ zookeeper.port }}
+{%- endfor %}
+
+{{ nodepool_config }}

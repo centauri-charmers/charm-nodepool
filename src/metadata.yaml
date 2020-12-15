@@ -1,0 +1,15 @@
+name: nodepool
+summary: Zuul Resource manager
+maintainer: Centauri Charmers <charmers@centauri.solutions>
+description: |
+  Node pool is used by zuul to manage cloud resources.
+tags:
+  - app-server
+series:
+  - focal
+  - bionic
+subordinate: false
+provides: {}
+requires:
+  zookeeper:
+    interface: zookeeper
