@@ -47,7 +47,8 @@ class TestRegisteredHooks(test_utils.TestRegisteredHooks):
                     'nodepool.installed',
                     'endpoint.zookeeper.available',
                     'nodepool.user.created',
-                    'nodepool.cloud.configured',),
+                    'nodepool.cloud.configured',
+                    'endpoint.zookeeper.changed',),
                 'wait_for_zookeeper': (
                     'nodepool.installed', 'endpoint.zookeeper.joined',),
                 'set_ready': (

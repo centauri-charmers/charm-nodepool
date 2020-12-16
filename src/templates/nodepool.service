@@ -8,7 +8,7 @@ Type=simple
 Group=nodepool
 User=nodepool
 RuntimeDirectory=nodepool
-ExecStart=/usr/local/bin/nodepool-launcher
+ExecStart=/usr/local/bin/nodepool-launcher -d
 
 [Install]
 WantedBy=multi-user.target

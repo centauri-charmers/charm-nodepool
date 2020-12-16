@@ -30,9 +30,11 @@ def wait_for_zookeeper():
 
 
 @reactive.when_any('config.changed.username',
-                   'config.changed.password')
+                   'config.changed.password',
+                   'endpoint.zookeeper.changed')
 def update_creds():
     reactive.clear_flag('charm.openstack.creds.set')
+    reactive.clear_flag('nodepool.configured')
 
 
 @reactive.when_not('charm.openstack.creds.set')
